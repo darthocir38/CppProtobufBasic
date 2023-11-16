@@ -2,7 +2,7 @@
 
 // Including the generated header file from the protobuf compilation.
 // Adjust the path as needed based on the actual location of "example.pb.h".
-#include "../proto/example.pb.h"
+#include "example.pb.h"
 
 int main() {
     // Create an instance of the Protobuf message "Person".

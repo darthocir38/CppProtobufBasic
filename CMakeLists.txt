@@ -8,6 +8,8 @@ project(protobuf_example CXX)
 # Find the Protobuf package, which is required for this project.
 find_package(Protobuf REQUIRED)
 
+find_package(absl REQUIRED)
+
 # Generate C++ source and header files from the specified Protocol Buffers (protobuf) file.
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/example.proto)
 
@@ -20,4 +22,9 @@ target_compile_definitions(my_app PRIVATE cxx_std_11)
 
 # Link the "my_app" target with the Protobuf library.
 # This ensures that the necessary Protobuf libraries are linked during compilation.
-target_link_libraries(my_app PRIVATE protobuf::libprotobuf)
+target_link_libraries(my_app 
+	PRIVATE protobuf::libprotobuf 
+	PRIVATE absl::log_internal_check_op
+)
+
+target_include_directories(my_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
